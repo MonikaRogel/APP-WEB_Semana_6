@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro | Diseño Ampliado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Fondo dinámico animado -->
+    <div class="dynamic-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Partículas flotantes -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="form-card">
+            <!-- Encabezado premium -->
+            <div class="form-header">
+                <div class="header-icon">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+                <h1>Registro Premium</h1>
+                <p style="opacity: 0.9; font-size: 1.1rem;">Crea tu cuenta con nosotros</p>
+            </div>
+
+            <!-- Cuerpo del formulario -->
+            <div class="form-body">
+                <form id="registrationForm" novalidate>
+                    <div class="form-grid">
+                        <!-- Campo Nombre (ocupa toda la fila) -->
+                        <div class="form-group col-span-2 glow-effect">
+                            <label for="fullName" class="form-label required">
+                                <i class="fas fa-user"></i> Nombre completo
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="text" id="fullName" class="form-input" placeholder="Ej: Monyk Royel" autocomplete="name">
+                            </div>
+                            <div id="nameFeedback" class="feedback-message"></div>
+                            <div class="hint-text">Se capitalizará automáticamente al salir</div>
+                        </div>
+
+                        <!-- Campo Email -->
+                        <div class="form-group glow-effect">
+                            <label for="email" class="form-label required">
+                                <i class="fas fa-envelope"></i> Correo electrónico
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="email" id="email" class="form-input" placeholder="ejemplo@correo.com" autocomplete="email">
+                            </div>
+                            <div id="emailFeedback" class="feedback-message"></div>
+                            <div class="hint-text">Te enviaremos un correo de confirmación</div>
+                        </div>
+
+                        <!-- Campo Edad -->
+                        <div class="form-group glow-effect">
+                            <label for="age" class="form-label required">
+                                <i class="fas fa-birthday-cake"></i> Tu edad
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="age" class="form-input" placeholder="Ej: 18" min="0" max="120">
+                            </div>
+                            <div id="ageFeedback" class="feedback-message"></div>
+                            <div class="hint-text">Debes ser mayor o igual a 18 años</div>
+                        </div>
+
+                        <!-- Campo Contraseña (ocupa toda la fila) -->
+                        <div class="form-group col-span-2 glow-effect">
+                            <label for="password" class="form-label required">
+                                <i class="fas fa-lock"></i> Contraseña segura
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="password" id="password" class="form-input" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                                <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <!-- Medidor de fortaleza -->
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <div class="strength-text">
+                                    <span><i class="fas fa-shield-alt"></i> Nivel de seguridad:</span>
+                                    <span id="strengthText">Escribe para medir</span>
+                                </div>
+                            </div>
+                            <div id="passwordFeedback" class="feedback-message"></div>
+                            <div class="hint-text">Requisitos: 8+ caracteres, mayúscula, minúscula, número, símbolo</div>
+                        </div>
+
+                        <!-- Campo Confirmar Contraseña -->
+                        <div class="form-group col-span-2 glow-effect">
+                            <label for="confirmPassword" class="form-label required">
+                                <i class="fas fa-lock"></i> Confirmar contraseña
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="password" id="confirmPassword" class="form-input" placeholder="Repite tu contraseña" autocomplete="new-password">
+                                <button type="button" class="toggle-password" id="toggleConfirmPassword" aria-label="Mostrar contraseña">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="confirmFeedback" class="feedback-message"></div>
+                        </div>
+
+                        <!-- Campo Mensaje (ocupa toda la fila) -->
+                        <div class="form-group col-span-2 glow-effect">
+                            <label for="message" class="form-label required">
+                                <i class="fas fa-comment-dots"></i> Mensaje personal
+                            </label>
+                            <div class="input-wrapper">
+                                <textarea id="message" class="form-input" rows="4" placeholder="Cuéntanos sobre ti..."></textarea>
+                            </div>
+                            <div class="char-counter">
+                                <span id="charCount">0</span> / 500 caracteres
+                            </div>
+                            <div id="messageFeedback" class="feedback-message"></div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="form-actions">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Crear cuenta
+                        </button>
+                        <button type="reset" id="resetBtn" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reiniciar
+                        </button>
+                    </div>
+
+                    <!-- Mensaje de estado -->
+                    <div id="formStatus" class="form-status status-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="statusText">Completa todos los campos obligatorios</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
